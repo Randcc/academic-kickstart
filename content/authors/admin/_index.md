@@ -1,6 +1,6 @@
 ---
 # Display name
-name: Nelson Bighetti
+name: Lin Ruan
 
 # Username (this should match the folder name)
 authors:
@@ -10,32 +10,33 @@ authors:
 superuser: true
 
 # Role/position
-role: Professor of Artificial Intelligence
+role: Graduate student of University of Texas at Arlington
 
 # Organizations/Affiliations
 organizations:
-- name: Stanford University
-  url: ""
+- name: The University of Texas at Arlington
+  url: "https://www.uta.edu/"
 
 # Short bio (displayed in user profile at end of posts)
-bio: My research interests include distributed robotics, mobile computing and programmable matter.
+bio: My technical skills include Big data development, Embedded Development，Python, C, Java.
 
 interests:
+- Big data development
 - Artificial Intelligence
-- Computational Linguistics
-- Information Retrieval
+- Data Science
+
 
 education:
   courses:
-  - course: PhD in Artificial Intelligence
-    institution: Stanford University
-    year: 2012
-  - course: MEng in Artificial Intelligence
-    institution: Massachusetts Institute of Technology
-    year: 2009
-  - course: BSc in Artificial Intelligence
-    institution: Massachusetts Institute of Technology
-    year: 2008
+  - course: MEng in Computer Science
+    institution: University of Texas at Arlington
+    year: 2019-2020
+  - course: MEng in Software Engineering
+    institution: Beijing University of Posts and Telecommunications 
+    year: 2018-2021
+  - course: BSc in Automation
+    institution: Suzhou University
+    year: 2014-2018
 
 # Social/Academic Networking
 # For available icons, see: https://sourcethemes.com/academic/docs/page-builder/#icons
@@ -44,16 +45,13 @@ education:
 social:
 - icon: envelope
   icon_pack: fas
-  link: '#contact'  # For a direct email link, use "mailto:test@example.org".
-- icon: twitter
-  icon_pack: fab
-  link: https://twitter.com/GeorgeCushen
-- icon: google-scholar
+  link: 'lin.ruan@mavs.uta.edu'  # For a direct email link, use "mailto:test@example.org".
+- icon: github
   icon_pack: ai
-  link: https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ
+  link: https://github.com/Randcc
 - icon: github
   icon_pack: fab
-  link: https://github.com/gcushen
+  link: https://www.linkedin.com/in/ruan-lin-9b371219b/
 # Link to a PDF of your resume/CV from the About widget.
 # To enable, copy your resume/CV to `static/files/cv.pdf` and uncomment the lines below.
 # - icon: cv
@@ -70,6 +68,6 @@ user_groups:
 - Visitors
 ---
 
-Nelson Bighetti is a professor of artificial intelligence at the Stanford AI Lab. His research interests include distributed robotics, mobile computing and programmable matter. He leads the Robotic Neurobiology group, which develops self-reconfiguring robots, systems of self-organizing robots, and mobile sensor networks.
+Lin Ruan is a graduate student of Computer Scinence at the University of Texas at Arlington. Meanwhile, he is also a graduate student of Software Engineering at Beijing University of Posts and Telecommunications. He had two internship experience in China. His research interests include Big-data development, Artificial Intelligence and Data Science. His programming language is Java, Python and C.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate.
+
