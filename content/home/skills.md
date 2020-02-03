@@ -14,14 +14,16 @@ subtitle = ""
 # 
 # For available icons, see: https://sourcethemes.com/academic/docs/widgets/#icons
 
+
+
 [[feature]]
-  icon = "palette"
+  icon = "tv"
   icon_pack = "fas"
   name = "Big-data Development"
 
 
 [[feature]]
-  icon = "file-code"
+  icon = "palette"
   icon_pack = "fas"
   name = "Statistics"
 
@@ -32,7 +34,7 @@ subtitle = ""
   name = "Crawler Development"
   
 [[feature]]
-  icon = "tv"
+  icon = "file-code"
   icon_pack = "fas"
   name = "Back-end Development"
 
