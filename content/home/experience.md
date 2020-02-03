@@ -25,30 +25,31 @@ date_format = "Jan 2006"
   location = "Beijing, China"
   date_start = "2019-06-10"
   date_end = "2019-08-10"
-  description = 
-  """
+  description = """ 
   Responsibilities include:
+ 
+  * Responsible for the competitive analysis of tariff packages in the telecommunications industry. 
+  * Review telecommunications tariff packages and the preparation of the training set. 
+  * Classify the articles of the telecom operator's WeChat public number and website. 
   
-  * Responsible for the extraction, stitching and storage of key information of real-time data.
-  * Responsible for java background development, display dynamic data, analyze data trends.
   """
-  
+
 [[experience]]
-  title = "CEO"
+  title = "Python crawler development intern"
   company = "ZhuoYu Technology Co.Ltd"
   company_url = ""
-  location = "California"
-  date_start = "2017-01-01"
-  date_end = ""
-  description = 
-  """
+  location = "Beijing, China"
+  date_start = "2019-06-05"
+  date_end = "2019-03-24"
+  description = """
   Responsibilities include:
   
   * Use scrapy framework to write crawler code based on website structure
   * Responsible for the storage of real-time data
   * Responsible for writing anti-crawler code for websites
-  
   """
+  
+
 
 
 +++
