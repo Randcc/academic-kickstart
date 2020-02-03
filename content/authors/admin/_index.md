@@ -47,7 +47,7 @@ social:
   icon_pack: fas
   link: 'lin.ruan@mavs.uta.edu'  # For a direct email link, use "mailto:test@example.org".
 - icon: github
-  icon_pack: ai
+  icon_pack: fab
   link: https://github.com/Randcc
 - icon: github
   icon_pack: fab
