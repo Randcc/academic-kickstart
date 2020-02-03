@@ -16,27 +16,30 @@ subtitle = ""
 
 [[feature]]
   icon = "palette"
-  icon_pack = "fab"
+  icon_pack = "fas"
   name = "Big-data Development"
-  description = "70%"
+
 
 [[feature]]
   icon = "file-code"
   icon_pack = "fas"
   name = "Statistics"
-  description = "30%"  
-  
+
+
 [[feature]]
   icon = "database"
-  icon_pack = "fab"
+  icon_pack = "fas"
   name = "Crawler Development"
-  description = "30%"
   
 [[feature]]
   icon = "tv"
   icon_pack = "fas"
   name = "Back-end Development"
-  description = "30%"
+
+[[feature]]
+  icon = "lock"
+  icon_pack = "fas"
+  name = "Information Safety"
 
 
 +++
