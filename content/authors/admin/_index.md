@@ -21,7 +21,7 @@ organizations:
 bio: My technical skills include Big data development, Embedded Development，Python, C, Java.
 
 interests:
-- Big data development
+- Big-data Development
 - Artificial Intelligence
 - Data Science
 
