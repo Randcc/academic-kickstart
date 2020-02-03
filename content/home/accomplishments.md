@@ -19,13 +19,12 @@ date_format = "Jan 2006"
 #   Begin/end multi-line descriptions with 3 quotes `"""`.
 
 [[item]]
-  organization = "The 3rd China Internet + College Students Innovation and Entrepreneurship Competition"
-  organization_url = "https://cy.ncss.org.cn/"
-  title = "Chongqing Division Bronze Award"
+
+  title = "National College Student Electronic Design Competition third prize"
   date_start = "2017-07-10"
 
 [[item]]
-  title = "Silian Enterprise Scholarships "
+  title = "National College Student Smart Internet Innovation Competition North China Division first prize"
   date_start = "2017-10-01"
   
 
