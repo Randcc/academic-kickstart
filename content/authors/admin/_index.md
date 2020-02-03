@@ -49,7 +49,7 @@ social:
 - icon: github
   icon_pack: fab
   link: https://github.com/Randcc
-- icon: github
+- icon: linkedin
   icon_pack: fab
   link: https://www.linkedin.com/in/ruan-lin-9b371219b/
 # Link to a PDF of your resume/CV from the About widget.
