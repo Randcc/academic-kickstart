@@ -19,18 +19,18 @@ subtitle = ""
   icon_pack = "fab"
   name = "Big-data Development"
   description = "70%"
-  
-  [[feature]]
-  icon = "database"
-  icon_pack = "fab"
-  name = "Crawler Development"
-  description = "30%"
-  
+
 [[feature]]
   icon = "file-code"
   icon_pack = "fas"
   name = "Statistics"
   description = "30%"  
+  
+[[feature]]
+  icon = "database"
+  icon_pack = "fab"
+  name = "Crawler Development"
+  description = "30%"
   
 [[feature]]
   icon = "tv"
