@@ -8,13 +8,6 @@ weight = 65  # Order that this section will appear.
 title = "Projects"
 subtitle = ""
 
-# Date format
-#   Refer to https://sourcethemes.com/academic/docs/customization/#date-format
-date_format = "Jan 2006"
-
-
-
-
 
 [content]
   # Page type to display. E.g. project.
