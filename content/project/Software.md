@@ -5,7 +5,7 @@ title = "Data scraping of the sunshine hotline administration platform"
 
 summary = "Completing the Data scraping by using scrapy framework."
 
-image_preview = "./ML2.jpeg"
+image_preview = ""
 
 tags = ["Software"]
 
