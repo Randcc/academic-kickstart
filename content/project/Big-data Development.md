@@ -5,7 +5,7 @@ title = "Analysis of operator traffic data based on Spark"
 
 summary = "Operator traffic data based on big-data Development."
 
-image_preview = "./ML1.jpeg"
+image_preview = ""
 
 tags = ["Big-data Development"]
 
