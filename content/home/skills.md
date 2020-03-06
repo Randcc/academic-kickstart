@@ -21,12 +21,10 @@ subtitle = ""
   icon_pack = "fas"
   name = "Big-data Development"
 
-
 [[feature]]
   icon = "palette"
   icon_pack = "fas"
   name = "Statistics"
-
 
 [[feature]]
   icon = "database"
