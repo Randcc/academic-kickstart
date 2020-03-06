@@ -26,8 +26,8 @@ subtitle = ""
    tag = "*"
   
   [[content.filter_button]]
-   name = "Deep Learning"
-   tag = "Deep Learning"
+   name = "Big-data Development"
+   tag = "Big-data Development"
   
   [[content.filter_button]]
    name = "Software Development"
