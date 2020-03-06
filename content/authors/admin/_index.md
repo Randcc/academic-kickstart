@@ -45,13 +45,17 @@ education:
 social:
 - icon: envelope
   icon_pack: fas
-  link: 'lin.ruan@mavs.uta.edu'  # For a direct email link, use "mailto:test@example.org".
+  link: 'lin.ruan@mavs.uta.edu'  # For a direct email link, 
+- icon: facebook
+  icon_pack: fab
+  link: https://www.facebook.com/lin.rand.1
 - icon: github
   icon_pack: fab
   link: https://github.com/Randcc
 - icon: linkedin
   icon_pack: fab
   link: https://www.linkedin.com/in/ruan-lin-9b371219b/
+
 # Link to a PDF of your resume/CV from the About widget.
 # To enable, copy your resume/CV to `static/files/cv.pdf` and uncomment the lines below.
 - icon: cv
@@ -59,7 +63,7 @@ social:
   link: files/resume.pdf
 
 # Enter email to display Gravatar (if Gravatar enabled in Config)
-email: ""
+email: "lin.ruan@mavs.uta.edu"
 
 # Organizational groups that you belong to (for People widget)
 #   Set this to `[]` or comment out if you are not using People widget.

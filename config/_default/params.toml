@@ -81,7 +81,7 @@ edit_page = {repo_url = "https://github.com/gcushen/hugo-academic", content_dir 
 ############################
 
 # Enter contact details (optional). To hide a field, clear it to "".
-# email = "lijun.wang@mavs.uta.edu"
+email = "linrand@163.com"
 phone = "682-283-8640"
 
 # Address
@@ -105,6 +105,7 @@ coordinates = {latitude = "32.730284", longitude = "-97.112095"}
 # Contact links
 #   Set to `[]` to disable, or comment out unwanted lines with a hash `#`.
 contact_links = [
+  {icon = "facebook", icon_pack = "fab", name = "Facebook Me", link = "https://www.facebook.com/lin.rand.1"},
   {icon = "envelope", icon_pack = "fas", name = "lin.ruan@mavs.uta.edu", link = "mailto:lin.ruan@mavs.uta.edu"},
   {icon = "linkedin", icon_pack = "fab", name = "LinkedIn", link = "https://www.linkedin.com/in/ruan-lin-9b371219b//"},
   # {icon = "telegram", icon_pack = "fab", name = "Telegram Me", link = "https://telegram.me/@Telegram"},
@@ -137,6 +138,9 @@ address_format = "en-us"
 ## Advanced
 ############################
 
+# Get user avatars from Gravatar.com? (true/false)
+gravatar = false
+
 # Main menu alignment (l = left, c = center, r = right) and logo options.
 main_menu = {align = "l", show_logo = true}
 
@@ -160,12 +164,12 @@ plugins_js  = []
 # Avatars.
 # An avatar is an image that appears next to a user's name.
 # An avatar can be uploaded as an image named `avatar` to each user's profile or fetched from Gravatar.com.
-[avatar]
-  # Get user avatars from Gravatar.com? (true/false)
-  gravatar = false
+# [avatar]
+#   # Get user avatars from Gravatar.com? (true/false)
+#   gravatar = false
 
-  # Choose a shape for avatar images. Options: circle, square.
-  shape = "circle"
+#   # Choose a shape for avatar images. Options: circle, square.
+#   shape = "circle"
 
 # Available address formats.
 [address_formats]
@@ -226,7 +230,7 @@ plugins_js  = []
   #   0: No search engine
   #   1: Academic (built-in)
   #   2: Algolia (https://www.algolia.com)
-  engine = 1
+  engine = 0
 
   # Configuration of Algolia search engine.
   # Paste the values from your Algolia dashboard.
@@ -254,7 +258,7 @@ plugins_js  = []
   #   1: Google Maps
   #   2: OpenStreetMap (Mapnik)
   #   3: OpenStreetMap (Mapbox)
-  engine = 2
+  engine = 0
   api_key = ""
   zoom = 15
 
