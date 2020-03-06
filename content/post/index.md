@@ -176,4 +176,4 @@ sample_submission_test["target"]= multinomial_naive_bayes.predict(X_test)
 sample_submission_test.to_csv("submission_test.csv", index=False)
 ```
 ## Final Ranking
-![png](./rank.jpg)
+![png](./rank.png)
