@@ -7,7 +7,7 @@
   name = "Home"
   url = "#about"
   weight = 10
-
+ 
 [[main]]
   name = "Skills"
   url = "#skills"
