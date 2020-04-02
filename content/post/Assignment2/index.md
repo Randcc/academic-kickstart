@@ -184,7 +184,7 @@ run_all_func(dev_set)
 
 ```
 
-```python
+```
 k =  1, distance = euclidean, accuracy = 96.226415 
 k =  1, distance = normalized euclidean, accuracy = 96.226415 
 k =  1, distance = cosine similarity, accuracy = 95.283019 
