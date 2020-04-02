@@ -4,7 +4,7 @@ title:  Assignment 2
 ---
 ## Implement KNN 
 
-#### Download: (https://github.com/Randcc/academic-kickstart/blob/master/static/files/Assignment2.ipynb).
+#### Download: ( https://github.com/Randcc/academic-kickstart/blob/master/static/files/Assignment2.ipynb ).
 
 ### python
 
