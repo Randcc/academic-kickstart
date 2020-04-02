@@ -285,11 +285,11 @@ plt.show()
 
 
 ```python
-
 print('max_k = %d, max_method = %s, max_acc = %f'%
                   (best_k, dist_conve[best_method], best_acc))
 
 ```
+## Find optimal hyperparameters.
 
     max_k = 9, max_method = cosine similarity, max_acc = 98.113208
 
