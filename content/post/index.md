@@ -1,179 +1,313 @@
 ---
-date: 2020-3-05
-title: Real or Not? NLP with Disaster Tweets（Assignment1）
+date: 2020-03-31
+title:  Assignment 2
 ---
-# Real or Not? NLP with Disaster Tweets   
-Predict which Tweets are about real disasters and which ones are not
- (Kaggle: https://www.kaggle.com/c/nlp-getting-started/)
+## Implement KNN 
 
-### Python Tool Packages
+#### Download: (https://github.com/Randcc/academic-kickstart/blob/master/static/files/Assignment2.ipynb).
 
+### python
 
 ```python
-import pandas as pd
-import numpy as np
+import math
+from csv import reader
+import random
+from math import sqrt
 import matplotlib.pyplot as plt
-import seaborn as sns
-from textblob import TextBlob
-import matplotlib.pyplot as plt
-import nltk
-from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize 
-from nltk.stem import PorterStemmer
-from textblob import Word 
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.decomposition import TruncatedSVD
-from sklearn.preprocessing import StandardScaler
-from sklearn.svm import SVC
-import xgboost as xgb
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn import feature_extraction, linear_model, model_selection, preprocessing
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score
-from sklearn.naive_bayes import MultinomialNB
-
-
-```python
-train=pd.read_csv("train.csv")
-test=pd.read_csv("test.csv")
-
-# Create textblob objects of the tweets
-sentiment_objects = [TextBlob(tw) for tw in train['text']]
-# Create list of polarity valuesx and tweet text
-sentiment_values = [[tweet.sentiment.polarity] for tweet in sentiment_objects]
-
-#Values closer to 1 indicate more positivity, while values closer to -1 indicate more negativity.
-sentiment_df = pd.DataFrame(sentiment_values, columns=["polarity"])
-
-
-```python
-def add_polarity(_df):
-    _df = pd.concat([_df, sentiment_df], axis=1)
-    return _df
-train=add_polarity(train)
-
-nltk.download('stopwords')
-nltk.download('punkt')
-nltk.download('wordnet')
-
-### Data Analysis
-
-```python
-# Cleaning & Preprocessing tweets Data
-stop_words = set(stopwords.words('english'))
-tweet_1=[]
-for tw in train["text"]:
-    word_tokens = word_tokenize(tw) 
-    #Delete ponctuation
-    word_tokens=[word.lower() for word in word_tokens if word.isalpha()]
-    #Delete stop words
-    filtered_sentence = [w for w in word_tokens if not w in stop_words] 
-    filtered_sentence = [] 
-  
-    for w in word_tokens: 
-        if w not in stop_words : 
-            if  w!='http':
-                filtered_sentence.append(w) 
-
-    Stem_words = []
-    ps =PorterStemmer()
-    for w in filtered_sentence:
-        rootWord=ps.stem(w)
-        Stem_words.append(rootWord)
-    lem=[]
-    for w in filtered_sentence:
-        word1 = Word(w).lemmatize("n")
-        word2 = Word(word1).lemmatize("v")
-        word3 = Word(word2).lemmatize("a")
-        lem.append(Word(word3).lemmatize())
-    tweet_1.append(lem)
+import operator
 ```
 
 
 ```python
-sentiment_objects = [TextBlob(str(t)) for t in tweet_1]
-sentiment_values = [[tweet_1.sentiment.polarity, str(tweet_1)] for tweet_1 in sentiment_objects]
-sentiment_values[0]
-sentiment_df1 = pd.DataFrame(sentiment_values, columns=["polarity_lem", "lems"])
-```
+# preprocess data
+def preprocess(file_address):
+    transfer_tag = {
+        'Iris-setosa':0,
+        'Iris-versicolor':1,
+        'Iris-virginica':2
+    }
+    tmpset = list()
+    with open(file_address, 'r') as file:
+        data_reader = reader(file)
+        for row in data_reader:
+            if not row:
+                continue
+            for i in range(len(row)-1):
+                row[i] = float(row[i])
+            row[-1] = transfer_tag[row[-1]]
+            tmpset.append(row)
+    dataset = tmpset
+    return dataset
 
-
-
-
-```python
-def add_polarity1(_df):
-    _df = pd.concat([_df, sentiment_df1["lems"]], axis=1)
-    return _df
-
-train=add_polarity1(train)
-train["lems"]= train["lems"].str.replace("[", "") 
-train["lems"]= train["lems"].str.replace("]", "") 
-train["lems"]= train["lems"].str.replace("\'", "") 
-train["lems"]= train["lems"].str.replace(",", " ") 
-count_vectorizer = CountVectorizer()
-X_train = count_vectorizer.fit_transform(train["lems"])
-X_test = count_vectorizer.transform(test["lems"])
 ```
 
 
 ```python
-#TfidfVectorizer - Convert text to word frequency vectors.
-tfidf_vectorizer = TfidfVectorizer()
-X_train_tfidf = tfidf_vectorizer.fit_transform(train["lems"])
-X_test_tfidf = tfidf_vectorizer.transform(test["lems"])
+dataset = preprocess('./iris.data')
+print(len(dataset))
+print(dataset[0:5])
+
 ```
-### Data Preprocessing
+
+    150
+    [[5.1, 3.5, 1.4, 0.2, 0], [4.9, 3.0, 1.4, 0.2, 0], [4.7, 3.2, 1.3, 0.2, 0], [4.6, 3.1, 1.5, 0.2, 0], [5.0, 3.6, 1.4, 0.2, 0]]
+
+
+## Divide the dataset as development and test.
+
 
 ```python
-sentiment_objects = [TextBlob(str(t)) for t in tweet_2]
-sentiment_values = [[tweet_2.sentiment.polarity, str(tweet_2)] for tweet_2 in sentiment_objects]
-sentiment_values[0]
-sentiment_df1 = pd.DataFrame(sentiment_values, columns=["polarity_lem", "lems"])
-```
-
-
-### generate word vector by using Glove
-```python
-# Fitting xgboost on Count Vector
-xgb_classifier = xgb.XGBClassifier(max_depth=7, n_estimators=200, colsample_bytree=0.8, subsample=0.8, nthread=10, learning_rate=0.1)
-scores = model_selection.cross_val_score(xgb_classifier, X_train, train["target"], cv=3, scoring="f1")
-xgb_classifier.fit(X_train,  train["target"])
+# split devset testset.
+def split_devset_testset(dataset, split):
+    dev_set = list()
+    test_set = list()
+    for index in range(len(dataset) - 1):
+        if random.uniform(0, 1) < split:
+            dev_set.append(dataset[index])
+        else:
+            test_set.append(dataset[index])
+    return dev_set, test_set
 
 ```
-
-### build model
 
 ```python
-# Fitting xgboost on tfidf
-xgb_classifier_tfidf = xgb.XGBClassifier(max_depth=7, n_estimators=200, colsample_bytree=0.8, subsample=0.8, nthread=10, learning_rate=0.1)
-scores = model_selection.cross_val_score(xgb_classifier_tfidf , X_train_tfidf, train["target"], cv=3, scoring="f1")
-xgb_classifier_tfidf.fit(X_train_tfidf,train["target"])
-
+dev_set, test_set = split_devset_testset(dataset, 0.7)
+print("dev_set length:", len(dev_set), "--- test_set length:", len(test_set))
 ```
-### Training
+
+dev_set length: 106 --- test_set length: 43
+
+## Distance metric.
 
 ```python
-# Fitting xgboost on Count Vector svd feature
-xgb_classifier_svd= xgb.XGBClassifier(max_depth=7, n_estimators=200, colsample_bytree=0.8, subsample=0.8, nthread=10, learning_rate=0.1)
-scores = model_selection.cross_val_score(xgb_classifier_svd, xtrain_svd, train["target"], cv=3, scoring="f1")
-xgb_classifier_svd.fit(xtrain_svd, train["target"])
+def distance_metric(sample0, sample1, method, n = 4):
+    
+    # euclidean distance.
+    if method == 0:
+        ret_dist = 0
+        for i in range(n):
+            ret_dist += pow((sample0[i] - sample1[i]), 2)
+        return math.sqrt(ret_dist)
+    
+    # normalized euclidean distance.
+    elif method == 1:
+        ret_sum = 0
+        for i in range(n):
+            avg = (sample0[i]-sample1[i])/2
+            cal = sqrt(pow((sample0[i] - avg), 2) + pow((sample1[i] - avg), 2))
+            ret_sum += pow(((sample0[i] - sample1[i]) / cal), 2)
+        return math.sqrt(ret_sum)
+    
+    # cosine similarity.
+    elif method == 2:
+        molecule = 0
+        denom_x = 0
+        denom_y = 0
+        ret_cal = 0
 
-# Fitting a simple xgboost on tfidf svd features
-xgb_classifier_svd_tfidf = xgb.XGBClassifier(max_depth=7, n_estimators=200, colsample_bytree=0.8, subsample=0.8, nthread=10, learning_rate=0.1)
-scores = model_selection.cross_val_score(xgb_classifier_svd_tfidf, xtrain_svd_scl_tfidf, train["target"], cv=3, scoring="f1")
-xgb_classifier_svd_tfidf.fit(xtrain_svd_scl_tfidf, train["target"])
+        for i in range(n):
+            molecule += sample0[i] * sample1[i]
+            denom_x += pow(sample0[i], 2)
+            denom_y += pow(sample1[i], 2)
+        ret_cal = -molecule / (sqrt(denom_x) * sqrt(denom_y))
+        return ret_cal
 
 ```
 
-### Testing
 
 ```python
-sample_submission = pd.read_csv("sample_submission.csv")
-sample_submission["target"]= multinomial_naive_bayes.predict(X_test)
-sample_submission.to_csv("submission.csv", index=False)
-sample_submission_test = pd.read_csv("test.csv")
-sample_submission_test["target"]= multinomial_naive_bayes.predict(X_test)
-sample_submission_test.to_csv("submission_test.csv", index=False)
+def cal_accuracy(test_set, pred):
+    correct = 0
+    for x in range(len(test_set)):
+        if test_set[x][-1] == pred[x]:
+            correct += 1
+    return (correct/float(len(test_set))) * 100
 ```
-## Final Ranking
-![png](./rank.jpg)
+
+
+```python
+def pred_result(result):
+    votes_list = {}
+    for index, target in enumerate(result):
+        if target[-1] in votes_list:
+            votes_list[target[-1]] += 1
+        else:
+            votes_list[target[-1]] = 1
+    ret_votes = max(votes_list.items(), key=lambda x: x[1])[0]
+
+    return ret_votes
+```
+
+
+## Implement KNN.
+
+```python
+def knn_func(train_set, k = 1, dist_cata = 0):
+    label_num = []
+    for index in train_set:
+        dist_list = []
+        for x in range(len(train_set)):
+            dist = 0
+            if train_set[x] == index:
+                continue
+            else:
+                dist = distance_metric(index, train_set[x], dist_cata)
+                dist_list.append((train_set[x], dist))
+            dist_list.sort(key = operator.itemgetter(1))
+        neighbors = [dist_list[i][0] for i in range(k)]
+
+        label_num.append(pred_result(neighbors))
+    accuracy = cal_accuracy(train_set, label_num)
+
+    return accuracy
+```
+
+
+## Calculate Accuracy and Draw Charts.
+
+```python
+dist_conve = {0: 'euclidean', 1: 'normalized euclidean', 2: 'cosine similarity'}
+def run_all_func(dev_set):
+    k = [1, 3, 5, 7]
+    dist_list = [0, 1, 2]
+    
+    for x in k:
+        for y in dist_list:
+            acc = knn_func(dev_set, x, y)
+            print('k =  %d, distance = %s, accuracy = %f' %
+                  (x, dist_conve[y], acc))
+
+```
+
+```python
+run_all_func(dev_set)
+
+```
+
+k =  1, distance = euclidean, accuracy = 96.226415 
+
+k =  1, distance = normalized euclidean, accuracy = 96.226415 
+
+k =  1, distance = cosine similarity, accuracy = 95.283019 
+
+k =  3, distance = euclidean, accuracy = 96.226415 
+
+k =  3, distance = normalized euclidean, accuracy = 95.283019 
+
+k =  3, distance = cosine similarity, accuracy = 96.226415 
+
+k =  5, distance = euclidean, accuracy = 96.226415 
+
+k =  5, distance = normalized euclidean, accuracy = 95.283019 
+
+k =  5, distance = cosine similarity, accuracy = 97.169811 
+
+k =  7, distance = euclidean, accuracy = 96.226415 
+
+k =  7, distance = normalized euclidean, accuracy = 95.283019 
+
+k =  7, distance = cosine similarity, accuracy = 97.169811 
+
+
+
+```python
+best_k = 0
+best_method = 0
+best_acc = 0
+acc_list = []
+k_list = range(1, 20, 1)
+
+```
+
+## a. euclidean distance
+
+```python
+for k in k_list:
+    acc = knn_func(dev_set, k, 0)
+    acc_list.append(acc)
+    if acc > best_acc:
+        best_k, best_method, best_acc = k, 0, acc
+plt.xlim(0, 20)
+plt.ylim(90, 100)
+plt.xlabel('k')
+plt.ylabel('accuracy')
+plt.bar(k_list, acc_list)
+plt.show()
+
+```
+
+![png](./index01.png)
+
+
+
+## b. normalized euclidean distance.
+
+```python
+acc_list1 = []
+for k in k_list:
+    acc = knn_func(dev_set, k, 1)
+    acc_list1.append(acc)
+    if acc > best_acc:
+        best_k, best_method, best_acc = k, 1, acc
+plt.xlim(0, 20)
+plt.ylim(90, 100)
+plt.xlabel('k')
+plt.ylabel('accuracy')
+plt.bar(k_list, acc_list)
+plt.show()
+
+```
+![png](./index02.png)
+
+
+
+## c. cosine similarity.
+
+```python
+acc_list2 = []
+for k in k_list:
+    acc = knn_func(dev_set, k, 2)
+    acc_list2.append(acc)
+    if acc > best_acc:
+        best_k, best_method, best_acc = k, 2, acc
+
+plt.xlim(0, 20)
+plt.ylim(90, 100)
+plt.xlabel('k')
+plt.ylabel('accuracy')
+plt.bar(k_list, acc_list)
+plt.show()
+
+```
+
+![png](./index03.png)
+
+
+```python
+
+print('max_k = %d, max_method = %s, max_acc = %f'%
+                  (best_k, dist_conve[best_method], best_acc))
+
+```
+## Find optimal hyperparameters.
+    max_k = 9, max_method = cosine similarity, max_acc = 98.113208
+
+
+
+## Using the test dataset.
+
+
+```python
+best_acc = knn_func(test_set, best_k, best_method)
+print("best accuracy:", best_acc)
+
+```
+
+    best accuracy: 95.34883720930233
+
+
+
+
+
+
+
