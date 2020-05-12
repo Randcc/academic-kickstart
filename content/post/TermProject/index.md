@@ -2,9 +2,9 @@
 date: 2020-05-11
 title:  Term Project
 ---
-{{% staticref "files/PredictRating.ipynb" "newtab" %}} Download jupyter {{% /staticref %}}
+{{% staticref "files/dm_term_project.ipynb" "newtab" %}} Download jupyter {{% /staticref %}}
 
-{{% staticref "files/Term Project.pdf" "newtab" %}} Download PDF {{% /staticref %}}
+{{% staticref "files/dm_term_project.pdf" "newtab" %}} Download PDF {{% /staticref %}}
 # Predicting the Rating through Comment
 ## Data Mining Term Project
 ## Lin Ruan
@@ -73,7 +73,7 @@ for rating in rating_num_set:
 
 ```
 
-
+```python
 rating:  1 rating num: 20960
 rating:  2 rating num: 40766
 rating:  3 rating num: 77967
@@ -84,7 +84,7 @@ rating:  7 rating num: 775531
 rating:  8 rating num: 657581
 rating:  9 rating num: 322400
 rating:  10 rating num: 153530
-
+```
 
 
 ### it's show the bar chat about the rating and the rating number. the rating of 6, 7, 8 contains most part.
@@ -320,11 +320,12 @@ while True:
 
 ```
 
+```python
 not bad
 rating is :  [6]
 excellent
 rating is :  [8]
 that's ok
 rating is :  [6]
-
+```
 
