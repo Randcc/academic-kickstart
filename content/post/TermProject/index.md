@@ -10,9 +10,10 @@ title:  Term Project
 ## Lin Ruan
 ## 1001778510
 
-## Data: https://www.kaggle.com/jvanelteren/boardgamegeek-reviews
 ## Youtube Video: https://www.youtube.com/watch?v=R5sm9YaFYlg
 ## Github: https://github.com/Randcc/dm_predict_rating.git
+## kaggle: https://www.kaggle.com/linrand/board-game-rating-prediction/edit/run/33922091
+
 
 ```python
 import pandas as pd
