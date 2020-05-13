@@ -328,20 +328,34 @@ hyper:  0.9 tfidfvectorizer on svm accuracy:  29.675253940853707
 
 ```
 
+```python
+rating_list = []
+row_list = []
+for rating in show_figure:
+    rating_list.append(show_figure[rating])
+    row_list.append(rating)
+plt.plot(row_list, rating_list, color='red')
+plt.title('SVM Hyper of Accuracy')
+plt.xlabel('Hyper')
+plt.ylabel('Accuracy')
+plt.show()
 
+```
+
+![png](./004.png)
+
+
+
+
+
+## Input comment get rating.
+### 1-5 belong to negtive rating, 6-10 belong to positive rating.
 
 ```python
 count_model = CountVectorizer()
 count_model.fit(train_set['comment'])
 
 ```
-
-CountVectorizer(analyzer='word', binary=False, decode_error='strict',
-                dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
-                lowercase=True, max_df=1.0, max_features=None, min_df=1,
-                ngram_range=(1, 1), preprocessor=None, stop_words=None,
-                strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
-                tokenizer=None, vocabulary=None)
 
 
 ```python
@@ -371,12 +385,12 @@ rating is :  [6]
 ```
 ## Challenge
 
-```python
-1. Data preprocessing: Find whitch data is useless and missing, and how to vectorization trainset, development set and testset ? Useless data such as username, movie id, we drop it, and for missing value, we delete that data row. Compared the two vectorization method, tfidf vectorization and count vectorization, and we get the proformanc of connt vectorization is better.
 
-2. Modul selection: How to find the modul satisfy this dataset, and how to train modul, get accuracy ? Test the naive bayes and svm modul, find it can perform well, and then we training our train set and test it on test set.
+#### 1. Data preprocessing: Find whitch data is useless and missing, and how to vectorization trainset, development set and testset ? Useless data such as username, movie id, we drop it, and for missing value, we delete that data row. Compared the two vectorization method, tfidf vectorization and count vectorization, and we get the proformanc of connt vectorization is better.
 
-3. Hyper parameter tuning: How to find the best hyper? we set different hyper list and train on svm modul, depend on different accuracy, juarge whtch hyper is beeter.
+#### 2. Modul selection: How to find the modul satisfy this dataset, and how to train modul, get accuracy ? Test the naive bayes and svm modul, find it can perform well, and then we training our train set and test it on test set.
+
+#### 3. Hyper parameter tuning: How to find the best hyper? we set different hyper list and train on svm modul, depend on different accuracy, juarge whtch hyper is beeter.
 ```
 
 
