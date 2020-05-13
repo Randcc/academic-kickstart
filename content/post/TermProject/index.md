@@ -10,7 +10,7 @@ title:  Term Project
 {{% staticref "files/dm_term_project.ipynb" "newtab" %}} Download jupyter {{% /staticref %}}
 
 {{% staticref "files/dm_term_project.pdf" "newtab" %}} Download PDF {{% /staticref %}}
-### Youtube Video: https://www.youtube.com/watch?v=R5sm9YaFYlg
+### Youtube Video: https://www.youtube.com/watch?v=qoySQ74s2us
 ### Github: https://github.com/Randcc/dm_predict_rating.git
 ### kaggle: https://www.kaggle.com/linrand/board-game-rating-prediction?scriptVersionId=33922091
 
