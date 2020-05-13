@@ -5,14 +5,14 @@ title:  Term Project
 {{% staticref "files/dm_term_project.ipynb" "newtab" %}} Download jupyter {{% /staticref %}}
 
 {{% staticref "files/dm_term_project.pdf" "newtab" %}} Download PDF {{% /staticref %}}
-# Predicting the Rating through Comment
-## Data Mining Term Project
-## Lin Ruan
-## 1001778510
+## Predicting the Rating through Comment
+### Data Mining Term Project
+### Lin Ruan
+### 1001778510
 
-## Youtube Video: https://www.youtube.com/watch?v=R5sm9YaFYlg
-## Github: https://github.com/Randcc/dm_predict_rating.git
-## kaggle: https://www.kaggle.com/linrand/board-game-rating-prediction/edit/run/33922091
+#### Youtube Video: https://www.youtube.com/watch?v=R5sm9YaFYlg
+#### Github: https://github.com/Randcc/dm_predict_rating.git
+#### kaggle: https://www.kaggle.com/linrand/board-game-rating-prediction/edit/run/33922091
 
 
 ```python
@@ -29,10 +29,11 @@ from sklearn import feature_extraction, linear_model, model_selection, preproces
 
 ```
 
+### data preprocess.
+#### for this part, we load our dataset, and then drop useless column, and we also drop contain miss value line, and we convert the uppercase letters to lowercase, and the below is shown the dataset we have processed, it contains the rating and comment column.
 
 ```python
-## data preprocess.
-### for this part, we load our dataset, and then drop useless column, and we also drop contain miss value line, and we convert the uppercase letters to lowercase, and the below is shown the dataset we have processed, it contains the rating and comment column.
+
 def preprocess(file_path):
     
     comment_rating = pd.read_csv(file_path, encoding = "ISO-8859-1")
@@ -53,7 +54,7 @@ comment_rating
 ![png](./000.png)
 
 
-### And then, we producing our rating part, let the rating number round to integer, it's benefit to the next part we predict the comment.
+#### And then, we producing our rating part, let the rating number round to integer, it's benefit to the next part we predict the comment.
 ```python
 
 def generation_new_set(comment_rating):
@@ -88,7 +89,7 @@ rating:  10 rating num: 153530
 ```
 
 
-### it's show the bar chat about the rating and the rating number. the rating of 6, 7, 8 contains most part.
+#### it's show the bar chat about the rating and the rating number. the rating of 6, 7, 8 contains most part.
 
 ```python
 
@@ -103,7 +104,7 @@ plt.show()
 ![png](./001.png)
 
 
-### split the data into trainset testset development set, and reset index.
+#### split the data into trainset testset development set, and reset index.
 
 ```python
 def split_train_dev_test(comment_rating):
@@ -139,7 +140,7 @@ length of dev_set:  395663
 length of test_set:  395664
 
 
-### we design two vectorizer function: tfidf and count, and use this function to process the train set and development set, to get the result for next prediction, and then compared the accuracy of the two vectorizer function handal the modul efficiency.
+#### we design two vectorizer function: tfidf and count, and use this function to process the train set and development set, to get the result for next prediction, and then compared the accuracy of the two vectorizer function handal the modul efficiency.
 
 ```python
 def vectorizer_tfidf(train_set, test_set, dev_set):
@@ -183,7 +184,7 @@ train_count, train_tag, test_count, test_tag, dev_count, dev_tag = vectorizer_co
 ```
 
 ## naive bayes modul.
-### use naive bayes modul to train our dataset and predict the rating, the bayes theorem p(y|x1x2x3...xn) = p(x1x2x3...xn|y)p(y) / p(x1x2x3...xn). to get the predict, we useing two method to compared the prediction, and drow the bar graph to visualization.
+#### use naive bayes modul to train our dataset and predict the rating, the bayes theorem p(y|x1x2x3...xn) = p(x1x2x3...xn|y)p(y) / p(x1x2x3...xn). to get the predict, we useing two method to compared the prediction, and drow the bar graph to visualization.
 
 ```python
 accuracies = {}
@@ -241,7 +242,7 @@ figure = plt.bar('count_bayes', accuracies['count_bayes'])
 ![png](./002.png)
 
 ## svm modul
-### using svm to train our modul, the svm theorem: yi(w/||w||* xi + b / ||w||). and get the prediction, compared the two method, and get the best modul.
+#### using svm to train our modul, the svm theorem: yi(w/||w||* xi + b / ||w||). and get the prediction, compared the two method, and get the best modul.
 
 ```python
 show_figure = {}
@@ -293,7 +294,7 @@ figure = plt.bar('count_svm', show_figure['count_svm'])
 ![png](./003.png)
 
 ## Experiment: hyperparameter tuning
-### Test hyper list on svm, depend on different accuraty, find the best hyper.
+#### Test hyper list on svm, depend on different accuraty, find the best hyper.
 
 ```python
 show_figure = {}
@@ -349,7 +350,7 @@ plt.show()
 
 
 ## Input comment get rating.
-### 1-5 belong to negtive rating, 6-10 belong to positive rating.
+#### 1-5 belong to negtive rating, 6-10 belong to positive rating.
 
 ```python
 count_model = CountVectorizer()
@@ -398,6 +399,7 @@ rating is :  [6]
 ## Reference
 
 ```python
+
 1. http://www.tfidf.com/
 
 2. https://towardsdatascience.com/tf-idf-for-document-ranking-from-scratch-in-python-on-real-world-dataset-796d339a4089
@@ -409,6 +411,7 @@ rating is :  [6]
 5. https://www.analyticsvidhya.com/blog/2017/09/understaing-support-vector-machine-example-code/
 
 6. https://www.geeksforgeeks.org/svm-hyperparameter-tuning-using-gridsearchcv-ml/
+
 
 ```
 
