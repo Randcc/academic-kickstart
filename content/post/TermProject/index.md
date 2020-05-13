@@ -12,7 +12,7 @@ title:  Term Project
 
 #### Youtube Video: https://www.youtube.com/watch?v=R5sm9YaFYlg
 #### Github: https://github.com/Randcc/dm_predict_rating.git
-#### kaggle: https://www.kaggle.com/linrand/board-game-rating-prediction/edit/run/33922091
+#### kaggle: https://www.kaggle.com/linrand/board-game-rating-prediction?scriptVersionId=33922091
 
 
 ```python
