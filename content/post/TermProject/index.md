@@ -2,17 +2,17 @@
 date: 2020-05-11
 title:  Term Project
 ---
+
+# Predicting the Rating through Comment
+## Data Mining Term Project
+## Lin Ruan
+## 1001778510
 {{% staticref "files/dm_term_project.ipynb" "newtab" %}} Download jupyter {{% /staticref %}}
 
 {{% staticref "files/dm_term_project.pdf" "newtab" %}} Download PDF {{% /staticref %}}
-## Predicting the Rating through Comment
-### Data Mining Term Project
-### Lin Ruan
-### 1001778510
-
-#### Youtube Video: https://www.youtube.com/watch?v=R5sm9YaFYlg
-#### Github: https://github.com/Randcc/dm_predict_rating.git
-#### kaggle: https://www.kaggle.com/linrand/board-game-rating-prediction?scriptVersionId=33922091
+### Youtube Video: https://www.youtube.com/watch?v=R5sm9YaFYlg
+### Github: https://github.com/Randcc/dm_predict_rating.git
+### kaggle: https://www.kaggle.com/linrand/board-game-rating-prediction?scriptVersionId=33922091
 
 
 ```python
@@ -29,7 +29,7 @@ from sklearn import feature_extraction, linear_model, model_selection, preproces
 
 ```
 
-### data preprocess.
+## data preprocess.
 #### for this part, we load our dataset, and then drop useless column, and we also drop contain miss value line, and we convert the uppercase letters to lowercase, and the below is shown the dataset we have processed, it contains the rating and comment column.
 
 ```python
@@ -294,7 +294,7 @@ figure = plt.bar('count_svm', show_figure['count_svm'])
 ![png](./003.png)
 
 ## Experiment: hyperparameter tuning
-#### Test hyper list on svm, depend on different accuraty, find the best hyper.
+##### Test hyper list on svm, depend on different accuraty, find the best hyper.
 
 ```python
 show_figure = {}
@@ -392,28 +392,27 @@ rating is :  [6]
 #### 2. Modul selection: How to find the modul satisfy this dataset, and how to train modul, get accuracy ? Test the naive bayes and svm modul, find it can perform well, and then we training our train set and test it on test set.
 
 #### 3. Hyper parameter tuning: How to find the best hyper? we set different hyper list and train on svm modul, depend on different accuracy, juarge whtch hyper is beeter.
-```
+
 
 
 
 ## Reference
 
-```python
-
-1. http://www.tfidf.com/
-
-2. https://towardsdatascience.com/tf-idf-for-document-ranking-from-scratch-in-python-on-real-world-dataset-796d339a4089
-
-3. https://www.analyticsvidhya.com/blog/2017/09/naive-bayes-explained/
-
-4. https://towardsdatascience.com/support-vector-machine-introduction-to-machine-learning-algorithms-934a444fca47
-
-5. https://www.analyticsvidhya.com/blog/2017/09/understaing-support-vector-machine-example-code/
-
-6. https://www.geeksforgeeks.org/svm-hyperparameter-tuning-using-gridsearchcv-ml/
 
 
-```
+#### 1. http://www.tfidf.com/
+
+#### 2. https://towardsdatascience.com/tf-idf-for-document-ranking-from-scratch-in-python-on-real-world-dataset-796d339a4089
+
+#### 3. https://www.analyticsvidhya.com/blog/2017/09/naive-bayes-explained/
+
+#### 4. https://towardsdatascience.com/support-vector-machine-introduction-to-machine-learning-algorithms-934a444fca47
+
+#### 5. https://www.analyticsvidhya.com/blog/2017/09/understaing-support-vector-machine-example-code/
+
+#### 6. https://www.geeksforgeeks.org/svm-hyperparameter-tuning-using-gridsearchcv-ml/
+
+
 
 
 
