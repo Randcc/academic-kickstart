@@ -191,9 +191,9 @@ def apply_tiidf_bayes(train_tfidf, train_tag, dev_tfidf, dev_tag):
     naive_bayes = MultinomialNB()
     naive_bayes.fit(train_tfidf, train_tag)
     dev_predict = naive_bayes.predict(dev_tfidf)
-    accuracy = accuracy_score(dev_tag, dev_predict) * 100
-    accuracies['tfidf_bayes'] = accuracy / 100
-    print('tfidfvectorizer on naive bayes accuracy: ', accuracy)
+    accuracy = accuracy_score(dev_tag, dev_predict)
+    accuracies['tfidf_bayes'] = accuracy
+    print('tfidfvectorizer on naive bayes accuracy: ', accuracy  * 100)
     return accuracies
 
 accuracies = apply_tiidf_bayes(train_tfidf, train_tag, dev_tfidf, dev_tag)
@@ -211,10 +211,10 @@ def apply_tiidf_bayes(train_count, train_tag, dev_count, dev_tag):
     naive_bayes = MultinomialNB()
     naive_bayes.fit(train_count, train_tag)
     dev_predict = naive_bayes.predict(dev_count)
-    accuracy = accuracy_score(dev_tag, dev_predict) * 100
-    accuracies['count_bayes'] = accuracy / 100
+    accuracy = accuracy_score(dev_tag, dev_predict)
+    accuracies['count_bayes'] = accuracy
     
-    print('countvectorizer on naive bayes accuracy: ', accuracy)
+    print('countvectorizer on naive bayes accuracy: ', accuracy * 100)
     return accuracies, naive_bayes
 
 accuracies, naive_bayes = apply_tiidf_bayes(train_count, train_tag, dev_tfidf, dev_tag)
@@ -248,10 +248,10 @@ def apply_tiidf_svm(train_tfidf, train_tag, dev_tfidf, dev_tag):
     svm_modul = LinearSVC()
     svm_modul.fit(train_tfidf, train_tag)
     dev_predict = svm_modul.predict(dev_tfidf)
-    accuracy = accuracy_score(dev_tag, dev_predict) * 100
+    accuracy = accuracy_score(dev_tag, dev_predict)
 
-    show_figure['tfidf_svm'] = accuracy / 100
-    print('tfidfvectorizer on svm accuracy: ', accuracy)
+    show_figure['tfidf_svm'] = accuracy
+    print('tfidfvectorizer on svm accuracy: ', accuracy * 100)
     return show_figure
 
 show_figure = apply_tiidf_svm(train_tfidf, train_tag, dev_tfidf, dev_tag)
@@ -265,13 +265,13 @@ def apply_count_bayes(train_count, train_tag, dev_count, dev_tag):
     svm_modul = LinearSVC()
     svm_modul.fit(train_count, train_tag)
     dev_predict = svm_modul.predict(dev_count)
-    accuracy = accuracy_score(dev_tag, dev_predict) * 100
-    show_figure['count_svm'] = accuracy / 100
+    accuracy = accuracy_score(dev_tag, dev_predict)
+    show_figure['count_svm'] = accuracy
     
-    print('countvectorizer on svm accuracy: ', accuracy)
+    print('countvectorizer on svm accuracy: ', accuracy * 100)
     return show_figure
 
-show_figure = apply_count_bayes(train_tfidf, train_tag, dev_tfidf, dev_tag)
+show_figure = apply_count_bayes(traintrain_count_tfidf, train_tag, dev_count, dev_tag)
 
 ```
 
@@ -290,6 +290,44 @@ figure = plt.bar('count_svm', show_figure['count_svm'])
 
 
 ![png](./003.png)
+
+## Experiment: hyperparameter tuning
+### Test hyper list on svm, depend on different accuraty, find the best hyper.
+
+```python
+show_figure = {}
+hyper_list = [0.001, 0.01, 0.1, 0.5, 0.7, 0.9]
+
+def find_svm_hyper(train_tfidf, train_tag, dev_tfidf, dev_tag, hyper_list):
+    for index in hyper_list:
+        svm_modul = LinearSVC(C = index)
+        svm_modul.fit(train_tfidf, train_tag)
+        dev_predict = svm_modul.predict(dev_tfidf)
+        accuracy = accuracy_score(dev_tag, dev_predict)
+
+        show_figure[index] = accuracy
+        print('hyper: ', index, 'tfidfvectorizer on svm accuracy: ', accuracy * 100)
+    return show_figure
+
+show_figure = find_svm_hyper(train_tfidf, train_tag, dev_tfidf, dev_tag, hyper_list)
+
+```
+```python
+hyper:  0.001 tfidfvectorizer on svm accuracy:  28.07793501034972
+
+hyper:  0.01 tfidfvectorizer on svm accuracy:  29.82512896075701
+
+hyper:  0.1 tfidfvectorizer on svm accuracy:  30.294720507098212
+
+hyper:  0.5 tfidfvectorizer on svm accuracy:  29.916620962789043
+
+hyper:  0.7 tfidfvectorizer on svm accuracy:  29.794800120304398
+
+hyper:  0.9 tfidfvectorizer on svm accuracy:  29.675253940853707
+
+```
+
+
 
 ```python
 count_model = CountVectorizer()
@@ -320,6 +358,8 @@ while True:
 
 ```
 
+
+
 ```python
 not bad
 rating is :  [6]
@@ -328,4 +368,50 @@ rating is :  [8]
 that's ok
 rating is :  [6]
 ```
+## Challenge
+
+```python
+1. Data preprocessing: Find whitch data is useless and missing, and how to vectorization trainset, development set and testset ? Useless data such as username, movie id, we drop it, and for missing value, we delete that data row. Compared the two vectorization method, tfidf vectorization and count vectorization, and we get the proformanc of connt vectorization is better.
+
+2. Modul selection: How to find the modul satisfy this dataset, and how to train modul, get accuracy ? Test the naive bayes and svm modul, find it can perform well, and then we training our train set and test it on test set.
+
+3. Hyper parameter tuning: How to find the best hyper? we set different hyper list and train on svm modul, depend on different accuracy, juarge whtch hyper is beeter.
+```
+
+
+
+## Reference
+
+```python
+1. http://www.tfidf.com/
+
+2. https://towardsdatascience.com/tf-idf-for-document-ranking-from-scratch-in-python-on-real-world-dataset-796d339a4089
+
+3. https://www.analyticsvidhya.com/blog/2017/09/naive-bayes-explained/
+
+4. https://towardsdatascience.com/support-vector-machine-introduction-to-machine-learning-algorithms-934a444fca47
+
+5. https://www.analyticsvidhya.com/blog/2017/09/understaing-support-vector-machine-example-code/
+
+6. https://www.geeksforgeeks.org/svm-hyperparameter-tuning-using-gridsearchcv-ml/
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
